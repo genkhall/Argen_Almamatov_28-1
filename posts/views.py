@@ -1,24 +1,19 @@
 import datetime
 
-from django.shortcuts import HttpResponse,redirect
-
+from django.shortcuts import HttpResponse,redirect,render
+from posts.models import Product
 # Create your views here.
 '''MVC - Model View Controller'''
 
 
-def hello_view(request):
+def main_view(request):
     if request.method == "GET":
-        return HttpResponse("Hello its my project :)")
+        return render(request, "layouts/index.html")
 
-def get_youtube(request):
+def products_view(request):
     if request.method == "GET":
-        return redirect("https://www.youtube.com/")
-
-def get_date(request):
-    current_date = datetime.datetime.now().date()
-    if request.method == "GET":
-        return HttpResponse(f"Дата: {current_date}")
-
-def say_goodby(request):
-    if request.method == "GET":
-        return HttpResponse("Goodby user!")
+        products = Product.objects.all()
+        context = {
+            'products': products
+    }
+        return render(request, "products/products.html", context=context)
