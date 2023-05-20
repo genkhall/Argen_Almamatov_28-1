@@ -15,18 +15,25 @@
 
         flex-wrap: wrap;
     }
+    img{
+        width: 200px;
+    }
+
+
 </style>
 
     <div class="products">
         {% for product in products %}
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
+                    <img src="/media/{{ product.image }}" alt="">
                     <h5 class="card-title">{{ product.title }}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Model: {{ product.model}}</h6>
                     <h6 class="card-subtitle mb-2 text-muted">Color: {{ product.color}}</h6>
                     <h6 class="card-subtitle mb-2 text-muted">Prise: {{ product.prise }}</h6>
                     <h6 class="card-subtitle mb-2 text-muted">Rate: {{ product.rate }}</h6>
-                    <a href="#" class="card-link">Buy</a>
+
+                    <a href="/products/{{ product.id }}/" class="card-link">READ MORE</a>
                 </div>
             </div>
         {% endfor %}
