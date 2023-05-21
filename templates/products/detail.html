@@ -1,29 +1,18 @@
 {% extends 'layouts/index.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock %}
 
 {% block content %}
 
-    <style type="text/css">
 
-    .product_block{
-        width:30%;
-        margin-left: 20%;
-        margin-top: 20px;
-
-    }
-    .product_block > img{
-        width: 100%;
-
-    }
-    .comment_block{
-        padding: 10px;
-        color: darksalmon;
-        background:black;
-        margin-top: 20px;
-    }
-
-    </style>
     <div class="product_block">
-        <img src="/media/{{ product.image }}/" alt="">
+        {% if product.image %}
+            <img src="/media/{{ product.image }}/" alt="">
+        {% else %}
+            <img src="{% static 'images/img.png' %}" alt="">
+        {% endif %}
         <h1>{{ product.title }} <br>Rate:{{ product.rate }}</h1>
         <h3>{{ product.model }}</h3>
 

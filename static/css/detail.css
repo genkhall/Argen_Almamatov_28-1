@@ -1,0 +1,16 @@
+ .product_block{
+        width:30%;
+        margin-left: 20%;
+        margin-top: 20px;
+
+    }
+    .product_block > img{
+        width: 100%;
+
+    }
+    .comment_block{
+        padding: 10px;
+        color: darksalmon;
+        background:black;
+        margin-top: 20px;
+    }

@@ -1,23 +1,12 @@
-
-
-
-
 {% extends 'layouts/index.html' %}
-
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/product.css' %}">
+{% endblock %}
 {% block content %}
 
 <style type="text/css">
-    .products {
-        width: 80%;
-        margin-left: 10%;
-        display: flex;
-        justify-content: space-between;
 
-        flex-wrap: wrap;
-    }
-    img{
-        width: 200px;
-    }
 
 
 </style>
@@ -26,11 +15,18 @@
         {% for product in products %}
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
+                    {% if product.price > 45000 %}
+                          <h5 class="card-title" style="color: deeppink">
+                            {{ product.title }}</h5>
+                    {% else %}
+                        <h5 class="card-title">{{ product.title }}</h5>
+                    {% endif %}
                     <img src="/media/{{ product.image }}" alt="">
                     <h5 class="card-title">{{ product.title }}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Model: {{ product.model}}</h6>
                     <h6 class="card-subtitle mb-2 text-muted">Color: {{ product.color}}</h6>
                     <h6 class="card-subtitle mb-2 text-muted">Prise: {{ product.prise }}</h6>
+
                     <h6 class="card-subtitle mb-2 text-muted">Rate: {{ product.rate }}</h6>
 
                     <a href="/products/{{ product.id }}/" class="card-link">READ MORE</a>
@@ -40,3 +36,4 @@
     </div>
 
 {% endblock %}
+
