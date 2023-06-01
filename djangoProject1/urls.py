@@ -20,6 +20,7 @@ from posts.views import main_view, products_view, comment_view,post_create_view
 
 from django.conf.urls.static import static
 from djangoProject1 import settings
+from users.views import auth_view,register_view,logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +28,10 @@ urlpatterns = [
     path('products/', products_view),
     path('products/create/', post_create_view),
     path('products/<int:id>/',comment_view),
+    path('users/auth/', auth_view),
+    path('users/register/', register_view),
+    path('users/logout/', logout_view)
+
 
 ]
 

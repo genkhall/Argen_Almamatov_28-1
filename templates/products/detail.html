@@ -24,18 +24,28 @@
         <div class="comments">
             {% for comment in comments %}
                 <div class="comment_block">
-                <h5>{{ comment.text }}</h5>
+                    <h5>{{ comment.text }}</h5>
                 </div>
             {% endfor %}
         </div>
     </div>
+    {% if user.is_anonymous %}
+         <div class="auth_container" style="display: flex; justify-content: center;">
+        <form action="/users/auth/" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
 
-
-      <h3>Add Comment</h3>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-  </form>
+            <input type="submit" value="Login">
+        </form>
+         </div>
+    {% else %}
+          <h3>Add Comment</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    {% endif %}
 
 {% endblock %}
+

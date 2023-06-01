@@ -3,6 +3,7 @@ import datetime
 from django.shortcuts import HttpResponse, redirect, render
 from posts.models import Product, Review
 from posts.forms import ProductCreateForm, ReviewCreateForm
+from django.contrib.auth import logout,login
 
 # Create your views here.
 '''MVC - Model View Controller'''
@@ -14,10 +15,12 @@ def main_view(request):
 
 
 def products_view(request):
+    # logout(request)
     if request.method == "GET":
         products = Product.objects.all()
         context = {
-            'products': products
+            'products': products,
+            'user':request.user
         }
         return render(request, "products/products.html", context=context)
 
