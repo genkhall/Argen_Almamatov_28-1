@@ -7,5 +7,9 @@ class ProductCreateForm(forms.Form):
     rate = forms.FloatField()
     model = forms.CharField(max_length=50)
 
+    def save(self, commit):
+        pass
+
+
 class ReviewCreateForm(forms.Form):
     text = forms.CharField(widget=forms.Textarea())

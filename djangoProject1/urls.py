@@ -16,21 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from posts.views import main_view, products_view, comment_view,post_create_view
+from posts.views import MainPageCBV, PostCBV, CommentCBV,post_create_view
 
 from django.conf.urls.static import static
 from djangoProject1 import settings
-from users.views import auth_view,register_view,logout_view
+from users.views import AuthView,RegisterView,LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', main_view),
-    path('products/', products_view),
+    path('', MainPageCBV.as_view()),
+    path('products/', PostCBV.as_view()),
     path('products/create/', post_create_view),
-    path('products/<int:id>/',comment_view),
-    path('users/auth/', auth_view),
-    path('users/register/', register_view),
-    path('users/logout/', logout_view)
+    path('products/<int:pk>/',CommentCBV.as_view()),
+    path('users/auth/', AuthView.as_view()),
+    path('users/register/', RegisterView.as_view()),
+    path('users/logout/', LogoutView.as_view())
+
 
 
 ]
